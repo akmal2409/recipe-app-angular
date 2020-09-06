@@ -1,0 +1,9 @@
+<app-header (display)="displaySection($event)"></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-recipes *ngIf="state == 'recipes'"></app-recipes>
+      <app-shopping-list *ngIf="state == 'list'"></app-shopping-list>
+    </div>
+  </div>
+</div>
