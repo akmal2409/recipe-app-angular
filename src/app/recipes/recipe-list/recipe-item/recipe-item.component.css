@@ -1,0 +1,9 @@
+.recipe-icon-white {
+  border-radius: 50%;
+  border: 0.2rem #fff4cb solid;
+}
+
+.recipe-icon-orange {
+  border-radius: 50%;
+  border: 0.2rem #efd765 solid;
+}

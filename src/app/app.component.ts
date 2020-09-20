@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  state = 'recipes';
-
-  displaySection(state: string){
-    this.state = state;
-  }
+  // state = 'recipes';
+  //
+  // displaySection(state: string){
+  //   this.state = state;
+  // }
 }

@@ -8,20 +8,20 @@ import {state} from "@angular/animations";
 })
 export class HeaderComponent{
 
-  @Output() display = new EventEmitter<string>();
-  state: string;
+  // @Output() display = new EventEmitter<string>();
+  // state: string;
 
   ngOnInit() {
 
   }
 
-  displayRecipes(){
-    this.state = 'recipes';
-    this.display.emit(this.state);
-  }
-
-  displayShoppingList(){
-    this.state = 'list';
-    this.display.emit(this.state);
-  }
+  // displayRecipes(){
+  //   this.state = 'recipes';
+  //   this.display.emit(this.state);
+  // }
+  //
+  // displayShoppingList(){
+  //   this.state = 'list';
+  //   this.display.emit(this.state);
+  // }
 }

@@ -1,9 +1,10 @@
-<app-header (display)="displaySection($event)"></app-header>
+<app-header></app-header>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-recipes *ngIf="state == 'recipes'"></app-recipes>
-      <app-shopping-list *ngIf="state == 'list'"></app-shopping-list>
+      <router-outlet></router-outlet>
+<!--      <app-recipes *ngIf="state == 'recipes'"></app-recipes>-->
+<!--      <app-shopping-list *ngIf="state == 'list'"></app-shopping-list>-->
     </div>
   </div>
 </div>

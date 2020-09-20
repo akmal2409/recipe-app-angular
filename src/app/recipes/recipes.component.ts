@@ -20,9 +20,4 @@ export class RecipesComponent implements OnInit {
       }
     );
   }
-
-  onEmittedRecipe(recipe: Recipe) {
-    this.selectedRecipe = recipe;
-  }
-
 }
