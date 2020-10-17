@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background: url('https://c.pxhere.com/photos/c8/e1/wood_table_breakfast_lunch_dinner_health_nature_green-1380780.jpg!d') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+custom-hr{
+  border: 0;
+  height: 1px;
+  background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+}
+
+
+
+
+/*Animations*/
+.fadeInAnimation {
+  animation: fadeinout 3s linear forwards;
+}
+
+@keyframes fadeinout {
+  0%, 100% {opacity: 0; }
+  50% {opacity: 1; }
+}

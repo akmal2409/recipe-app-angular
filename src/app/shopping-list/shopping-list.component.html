@@ -1,14 +1,25 @@
-<div class="row">
+<div class="row shopping-list">
   <div class="col-10">
     <app-shopping-edit></app-shopping-edit>
     <hr>
     <ul class="list-group">
       <li class="list-group-item"
          style="cursor: pointer"
-         *ngFor="let ingredient of ingredients"
-      >
+         *ngFor="let ingredient of ingredients, let i = index"
+          (click)="onEditIngredient(i)">
         {{ ingredient.name }} ({{ ingredient.amount }})
       </li>
     </ul>
+    <div class="emptyCart" *ngIf="ingredients.length < 1">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1>Oops... Looks like your cart is empty! :(</h1>
+          <button class="btn btn-lg btn-outline-success" [routerLink]="'/recipes'">Go to Recipes</button>
+        </div>
+        <div class="col-12 text-center">
+          <img src="https://www.pngarts.com/files/3/Shopping-Cart-PNG-Image-Transparent.png">
+        </div>
+      </div>
+    </div>
   </div>
 </div>

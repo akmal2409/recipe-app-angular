@@ -1,1 +1,120 @@
-<p>recipe-edit works!</p>
+<div class="row">
+  <div class="col-12 col-lg-12">
+    <div class="card recipe-form">
+      <div class="card-body">
+        <h5 class="card-title text-center">
+          <span *ngIf="editMode">Update a recipe: {{ recipeForm.get('name').value}}</span>
+          <span *ngIf="!editMode">Add new recipe!</span>
+        </h5>
+        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+
+          <div class="alert alert-warning alert-dismissible fade show" role="alert"
+               *ngIf="recipeForm.invalid && recipeForm.touched && displayWarning"
+               [ngClass]="{'fadeInAnimation' : displayWarning}">
+            <strong>Holy guacamole!</strong> You should check in on some of those fields below
+          </div>
+
+          <div class="alert alert-success alert-dismissible fade show" role="alert"
+               *ngIf="showAlert"
+               [ngClass]="{'fadeInAnimation' : showAlert}">
+            Recipe has been <span *ngIf="editMode">updated</span><span *ngIf="!editMode">added</span>! You will be redirected shortly!
+          </div>
+
+          <div class="row">
+            <div class="col-12 d-flex justify-content-end justify-content-lg-start">
+              <button type="submit" [ngClass]="editMode ? 'btn m-1 btn-outline-warning' : 'btn m-1 btn-outline-success'"
+                      [disabled]="recipeForm.invalid">
+                {{ editMode ? 'Update' : 'Save'}}
+              </button>
+              <button type="button" class="btn btn-outline-danger m-1">Cancel</button>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="recipeForm.get('imagePath').valid">
+            <div class="col-12 text-center">
+              <img [src]="recipeForm.get('imagePath').value" class="img-fluid recipe-img">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="name">Recipe name</label>
+                <input type="text"
+                       id="name"
+                       class="form-control"
+                       formControlName="name">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="imageUrl">Image URL</label>
+                <input type="text"
+                       id="imageUrl"
+                       class="form-control"
+                       formControlName="imagePath">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea type="text"
+                          id="description"
+                          class="form-control"
+                          rows="6"
+                          formControlName="description">
+            </textarea>
+              </div>
+            </div>
+            <div class="col-12" *ngIf="recipeForm.get('description').invalid &&
+        recipeForm.get('description').touched">
+              <div class="alert alert-warning">
+                The length of a description must be more than 10 characters!
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12" formArrayName="ingredients">
+              <div class="row mt-2 mb-1"
+                   *ngFor="let ingCtr of controls, let i = index"
+                   [formGroupName]="i">
+                <div class="col-md-7 col-lg-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name">
+                </div>
+                <div class="col-3 col-lg-2">
+                  <input
+                    type="number"
+                    formControlName="amount"
+                    class="form-control">
+                </div>
+                <div class="col-md-2 col-lg-2">
+                  <button type="button" class="btn btn-danger" (click)="onRemoveIngredient(i)">X</button>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-12">
+                  <button class="btn btn-outline-success mb-3"
+                          type="button"
+                          (click)="onAddIngredient()">Add Ingredient</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
