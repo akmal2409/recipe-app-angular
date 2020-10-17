@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-12">
+    <ng-template [ngIf]="!successMessage && !recipeDeleted">
+      <div class="card text-white bg-primary mb-3 mt-5 start-message onlyFadeIn">
+        <div class="card-body">
+          <h5 class="card-title">Please select the recipe</h5>
+          <p class="card-text">You can view detailed information as well as add the ingredients to your shopping cart</p>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template [ngIf]="successMessage">
+      <div class="alert border-success alert-success fadeInAnimation text-center" role="alert" style="border-radius: 6%">
+        <h5 class="alert-heading">Recipe has been successfully {{ recipeCreatedOrUpdated }}!</h5>
+      </div>
+    </ng-template>
+
+    <ng-template [ngIf]="recipeDeleted">
+      <div class="alert border-primary alert-warning fadeInAnimation text-center" role="alert">
+        <h5 class="alert-heading">Recipe has been successfully deleted</h5>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

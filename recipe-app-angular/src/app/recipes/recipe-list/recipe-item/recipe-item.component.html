@@ -1,0 +1,9 @@
+<a [routerLink]="['/recipes', index]" [routerLinkActive]="'active'" style="cursor: pointer" class="list-group-item
+list-group-item-action
+d-flex justify-content-between align-items-center">
+  <div class="flex-column">
+    <b>{{recipe.name}}</b>
+    <p class="mb-0">{{ recipe.description }}</p>
+  </div>
+  <img [src]="recipe.imagePath" alt="{{ recipe.name }}" class="img-fluid recipe-icon-orange text-center" style="max-height: 50px">
+</a>

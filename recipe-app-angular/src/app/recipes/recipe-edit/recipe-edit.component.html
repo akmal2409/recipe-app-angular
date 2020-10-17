@@ -1,0 +1,118 @@
+<div class="row">
+  <div class="col-12 col-lg-12">
+    <div class="card recipe-form">
+      <div class="card-body">
+        <h5 class="card-title text-center">
+          <span *ngIf="editMode">Update a recipe: {{ recipeForm.get('name').value}}</span>
+          <span *ngIf="!editMode">Add new recipe!</span>
+        </h5>
+        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-12 d-flex justify-content-end justify-content-lg-start">
+              <button type="submit" [ngClass]="editMode ? 'btn m-1 btn-outline-warning' : 'btn m-1 btn-outline-success'"
+                      [disabled]="recipeForm.invalid">
+                {{ editMode ? 'Update' : 'Save'}}
+              </button>
+              <button type="button" (click)="onCancel()" class="btn btn-outline-danger m-1">Cancel</button>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="recipeForm.get('imagePath').valid">
+            <div class="col-12 text-center">
+              <img [src]="recipeForm.get('imagePath').value" class="img-fluid recipe-img">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="name">Recipe name</label>
+                <input type="text"
+                       id="name"
+                       class="form-control"
+                       formControlName="name">
+                <div class="alert alert-warning mt-1" *ngIf="recipeForm.get('name').invalid && recipeForm.get('name').touched">
+                  <span *ngIf="recipeForm.get('name').errors['required']">This field is required!</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="imageUrl">Image Path</label>
+                <input type="text"
+                       id="imageUrl"
+                       class="form-control"
+                       formControlName="imagePath"
+                       placeholder="https://example.com/photo1.png">
+                <div class="alert alert-warning mt-1" *ngIf="recipeForm.get('imagePath').touched
+                && recipeForm.get('imagePath').invalid">
+                  <span *ngIf="recipeForm.get('imagePath').errors['required']">This field is required</span>
+                  <span *ngIf="recipeForm.get('imagePath').errors['pattern']">Please enter a valid image URL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <div class="d-flex flex-row justify-content-between">
+                  <label for="description">Description</label>
+                  <span>Character count: {{ recipeForm.get('description').value.length }}</span>
+                </div>
+                <textarea type="text"
+                          id="description"
+                          class="form-control"
+                          rows="6"
+                          formControlName="description">
+            </textarea>
+                <div class="alert alert-warning mt-1" *ngIf="recipeForm.get('description').touched
+                && recipeForm.get('description').invalid">
+                  <span *ngIf="recipeForm.get('description').errors['required']">This field is required</span>
+                  <span *ngIf="recipeForm.get('description').errors['minlength']">Must be at least 10 characters long</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12" formArrayName="ingredients">
+              <div class="row mt-2 mb-1"
+                   *ngFor="let ingCtr of controls, let i = index"
+                   [formGroupName]="i">
+                <div class="col-md-7 col-lg-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name">
+                </div>
+                <div class="col-3 col-lg-2">
+                  <input
+                    type="number"
+                    formControlName="amount"
+                    class="form-control">
+                </div>
+                <div class="col-md-2 col-lg-2">
+                  <button type="button" class="btn btn-danger" (click)="onRemoveIngredient(i)">X</button>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-12">
+                  <button class="btn btn-outline-success mb-3"
+                          type="button"
+                          (click)="onAddIngredient()">Add Ingredient</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
